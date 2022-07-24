@@ -13,13 +13,26 @@
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        //третий пункт задания не сделан
+    while (true) {
         int firstNumber = getInt();
         int secondNumber = getInt();
-        char operation = getOperation();
-        int result = calculator(firstNumber, secondNumber, operation);
-        System.out.println("Результат: " + firstNumber + " " + operation + " " + secondNumber + " = " + result);
+
+        while (secondNumber == 0){
+            System.out.println("На ноль делить нельзя.");
+            secondNumber = getInt();
+        }
+
+        char s = 's';
+        char S = 'S';
+        char action = getOperation();
+        if (action == s || action == S) {
+            System.out.println("Программа завершена");
+            break;
+        }else{
+            int result = calculator(firstNumber, secondNumber, action);
+            System.out.println("Результат: " + firstNumber + " " + action + " " + secondNumber + " = " + result);
+        }
+    }
     }
 
     // Метод для получения чисел
@@ -36,9 +49,10 @@
         return Number;
     }
 
-    // Метод для получения операции
+    // Метод для получения операции или для закрытия программы
     public static char getOperation(){
-        System.out.println("Введите одну из четырех операций (+, -, *, /):");
+        System.out.print("Введите одну из четырех операций (+, -, *, /) ");
+        System.out.println("или для завершения программы введите слово \"Stop: \"");
         return sc.next().charAt(0);
     }
 
@@ -64,4 +78,5 @@
         }
         return result;
     }
+
 }
